@@ -117,4 +117,5 @@ struct MockSwiftData: View {
 
 #Preview {
     MockSwiftData()
+        .modelContainer(for: TodoItem.self, inMemory: true)
 }
