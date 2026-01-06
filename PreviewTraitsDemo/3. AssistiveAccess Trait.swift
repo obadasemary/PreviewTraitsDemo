@@ -53,6 +53,10 @@ struct AssistiveAccessTrait: View {
     }
 }
 
-#Preview {
+#Preview("Normal") {
+    AssistiveAccessTrait()
+}
+
+#Preview("Assistive Access", traits: .assistiveAccess) {
     AssistiveAccessTrait()
 }
