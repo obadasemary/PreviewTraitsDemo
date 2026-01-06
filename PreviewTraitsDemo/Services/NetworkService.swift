@@ -18,8 +18,10 @@ import SwiftUI
 @Observable
 class NetworkService {
     var users: [User] = []
+    let mockData: Bool
     
-    init() {
+    init(mockData: Bool = false) {
+        self.mockData = mockData
         loadUsers()
     }
     
@@ -30,6 +32,14 @@ class NetworkService {
     }
     
     func loadUsers() {
-        print("Users loaded")
+        if mockData {
+            users = [
+                User(id: UUID(), name: "John Appleseed", email: "john@example.com"),
+                User(id: UUID(), name: "Jane Doe", email: "jane@example.com"),
+                User(id: UUID(), name: "Bob Johnson", email: "bob@example.com"),
+            ]
+        } else {
+            print("Users loaded")
+        }
     }
 }
