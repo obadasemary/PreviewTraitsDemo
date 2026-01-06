@@ -23,7 +23,11 @@ class TodoItem {
     var isCompleted: Bool
     var createdAt: Date
     
-    init(title: String, isCompleted: Bool = false, createdAt: Date = Date.now) {
+    init(
+        title: String,
+        isCompleted: Bool = false,
+        createdAt: Date = Date.now
+    ) {
         self.title = title
         self.isCompleted = isCompleted
         self.createdAt = createdAt
@@ -32,12 +36,15 @@ class TodoItem {
 
 
 struct MockSwiftData: View {
+    
+    @Environment(NavigationManager.self) private var navigationManager
     @Environment(\.modelContext) private var modelContext
     @State private var showingAddSheet = false
     @State private var dateInput: String = ""
     @State private var titleInput: String = ""
     @State private var selectedDate: Date = .now
     @Query private var todos: [TodoItem]
+    
         var body: some View {
             NavigationStack {
                 List {
@@ -73,7 +80,7 @@ struct MockSwiftData: View {
                         }
                     }
                 }
-                .navigationTitle("SwiftData")
+                .navigationTitle(navigationManager.selectedTab.title)
                 .toolbarTitleDisplayMode(.inlineLarge)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
@@ -115,6 +122,9 @@ struct MockSwiftData: View {
         }
 }
 
-#Preview(traits: .mockData) {
+#Preview(
+    traits: .mockData,
+    .navigationTrait(selected: .mockSwiftData)
+) {
     MockSwiftData()
 }
