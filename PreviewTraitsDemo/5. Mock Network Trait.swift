@@ -35,7 +35,11 @@ struct MockNetworkTrait: View {
     }
 }
 
-#Preview {
+#Preview("Normal Network") {
     MockNetworkTrait()
         .environment(NetworkService())
+}
+
+#Preview("Mock Network", traits: .mockNetworkService) {
+    MockNetworkTrait()
 }
