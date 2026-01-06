@@ -20,9 +20,14 @@ import SwiftUI
 
 @main
 struct PreviewTraitsDemoApp: App {
+    @State private var navigationManager = NavigationManager()
+    @State private var networkService = NetworkService()
+
     var body: some Scene {
         WindowGroup {
             StartTab()
+                .environment(navigationManager)
+                .environment(networkService)
         }
     }
 }
