@@ -41,7 +41,11 @@ struct OrientationTraits: View {
     }
 }
 
-#Preview {
+#Preview("Protrait") {
+    OrientationTraits()
+}
+
+#Preview("Landscape", traits: .landscapeLeft) {
     OrientationTraits()
 }
 
