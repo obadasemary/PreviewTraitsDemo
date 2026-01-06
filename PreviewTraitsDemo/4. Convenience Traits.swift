@@ -46,7 +46,37 @@ struct ConvenienceTrait: View {
     }
 }
 
-#Preview {
+#Preview("Normal") {
     ConvenienceTrait()
 }
 
+#Preview("Dark Mode") {
+    ConvenienceTrait()
+        .preferredColorScheme(.dark)
+}
+
+#Preview("Dark Mode", traits: .modifier(DarkModeTrait())) {
+    ConvenienceTrait()
+}
+
+#Preview("Dark Mode", traits: .darkMode) {
+    ConvenienceTrait()
+}
+
+#Preview("Light Mode") {
+    ConvenienceTrait()
+        .preferredColorScheme(.light)
+}
+
+#Preview("Dark Mode + XXXLarge Type") {
+    ConvenienceTrait()
+        .preferredColorScheme(.dark)
+        .environment(\.dynamicTypeSize, .xxxLarge)
+}
+
+#Preview(
+    "Dark Mode + accessibility4 Type",
+    traits: .darkMode, .dynamicTypeSize(.accessibility4)
+) {
+    ConvenienceTrait()
+}
