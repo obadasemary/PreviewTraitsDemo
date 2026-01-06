@@ -17,6 +17,9 @@
 import SwiftUI
 
 struct LayoutTraits: View {
+    
+    @Environment(NavigationManager.self) private var navigationManager
+    
     var body: some View {
         VStack{
             Text("Layout Constraints").font(.largeTitle.bold())
@@ -32,14 +35,18 @@ struct LayoutTraits: View {
             .cornerRadius(12)
         }
         .padding()
+        .navigationTitle(navigationManager.selectedTab.title)
     }
 }
 
-#Preview("Normal") {
+#Preview("Normal", traits: .navigationTrait(selected: .layout)) {
     LayoutTraits()
 }
 
-#Preview("Fit Content", traits: .sizeThatFitsLayout) {
+#Preview(
+    "Fit Content",
+    traits: .sizeThatFitsLayout, .navigationTrait(selected: .layout)
+) {
     LayoutTraits()
 }
 
@@ -48,7 +55,8 @@ struct LayoutTraits: View {
     traits: .fixedLayout(
         width: 200,
         height: 200
-    )
+    ),
+    .navigationTrait(selected: .layout)
 ) {
     LayoutTraits()
 }
