@@ -16,6 +16,7 @@
 
 
 import SwiftUI
+import SwiftData
 
 
 @main
@@ -29,5 +30,6 @@ struct PreviewTraitsDemoApp: App {
                 .environment(navigationManager)
                 .environment(networkService)
         }
+        .modelContainer(for: TodoItem.self)
     }
 }
