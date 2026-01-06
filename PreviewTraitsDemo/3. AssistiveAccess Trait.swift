@@ -18,7 +18,10 @@
 import SwiftUI
 
 struct AssistiveAccessTrait: View {
+    
+    @Environment(NavigationManager.self) private var navigationManager
     @State private var toggle = false
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
@@ -44,19 +47,26 @@ struct AssistiveAccessTrait: View {
                     NavigationLink("Sister") {
                         Text("Sister's Details")
                     }
-            }
+                }
             }
             .padding()
-            .navigationTitle("Assistive Access")
+            .navigationTitle(navigationManager.selectedTab.title)
             .toolbarTitleDisplayMode(.inlineLarge)
         }
     }
 }
 
-#Preview("Normal") {
+#Preview(
+    "Normal",
+    traits: .navigationTrait(selected: .assistiveAccess)
+) {
     AssistiveAccessTrait()
 }
 
-#Preview("Assistive Access", traits: .assistiveAccess) {
+#Preview(
+    "Assistive Access",
+    traits: .assistiveAccess,
+    .navigationTrait(selected: .assistiveAccess)
+) {
     AssistiveAccessTrait()
 }
