@@ -17,7 +17,10 @@
 import SwiftUI
 
 struct MockNetworkTrait: View {
+    
+    @Environment(NavigationManager.self) private var navigationManager
     @Environment(NetworkService.self) var networkService
+    
     var body: some View {
         NavigationStack {
             List(networkService.users) { user in
@@ -29,17 +32,24 @@ struct MockNetworkTrait: View {
                         .foregroundStyle(.secondary)
                 }
             }
-            .navigationTitle("Network")
+            .navigationTitle(navigationManager.selectedTab.title)
             .toolbarTitleDisplayMode(.inlineLarge)
         }
     }
 }
 
-#Preview("Normal Network") {
+#Preview(
+    "Normal Network",
+    traits: .navigationTrait(selected: .mockNetwork)
+) {
     MockNetworkTrait()
         .environment(NetworkService())
 }
 
-#Preview("Mock Network", traits: .mockNetworkService) {
+#Preview(
+    "Mock Network",
+    traits: .mockNetworkService,
+    .navigationTrait(selected: .mockNetwork)
+) {
     MockNetworkTrait()
 }
