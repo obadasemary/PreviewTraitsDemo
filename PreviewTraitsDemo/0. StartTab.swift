@@ -18,10 +18,12 @@
 import SwiftUI
 
 struct StartTab: View {
-    @Environment(NavigationManager.self) var navManager
+    
+    @Environment(NavigationManager.self) private var navigationManager
+    
     var body: some View {
-        @Bindable var navManager = navManager
-        TabView(selection: $navManager.selectedTab) {
+        @Bindable var navigationManager = navigationManager
+        TabView(selection: $navigationManager.selectedTab) {
             Tab(value: .orientation) {
                 OrientationTraits()
             }
@@ -45,10 +47,10 @@ struct StartTab: View {
         .ignoresSafeArea()
         .safeAreaInset(edge: .top, alignment: .trailing) {
             Menu {
-                Picker("Select Tab", selection: $navManager.selectedTab) {
+                Picker("Select Tab", selection: $navigationManager.selectedTab) {
                     ForEach(MyTabs.allCases) { tab in
                         Button(tab.title) {
-                            navManager.selectedTab = tab
+                            navigationManager.selectedTab = tab
                         }
                     }
                 }
