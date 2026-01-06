@@ -17,58 +17,81 @@
 import SwiftUI
 
 struct ConvenienceTrait: View {
+    
+    @Environment(NavigationManager.self) private var navigationManager
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
-                        Text("Theme Aware Design")
-                            .font(.largeTitle)
-                            .bold()
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(.blue.gradient)
-                            .frame(height: 100)
-                            .overlay {
-                                Text("Some Card")
-                                    .foregroundStyle(.white)
-                                    .font(.headline)
-                            }
-                        
-                        HStack {
-                            Label("Light", systemImage: "sun.max.fill")
-                            Spacer()
-                            Label("Dark", systemImage: "moon.fill")
-                        }
-                        .foregroundStyle(.secondary)
+                Text("Theme Aware Design")
+                    .font(.largeTitle)
+                    .bold()
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(.blue.gradient)
+                    .frame(height: 100)
+                    .overlay {
+                        Text("Some Card")
+                            .foregroundStyle(.white)
+                            .font(.headline)
                     }
-                    .padding()
-                    .navigationTitle("Convenience")
-                    .toolbarTitleDisplayMode(.inlineLarge)
+                
+                HStack {
+                    Label("Light", systemImage: "sun.max.fill")
+                    Spacer()
+                    Label("Dark", systemImage: "moon.fill")
+                }
+                .foregroundStyle(.secondary)
+            }
+            .padding()
+            .navigationTitle(navigationManager.selectedTab.title)
+            .toolbarTitleDisplayMode(.inlineLarge)
         }
     }
 }
 
-#Preview("Normal") {
+#Preview(
+    "Normal",
+    traits: .navigationTrait(selected: .convenience)
+) {
     ConvenienceTrait()
 }
 
-#Preview("Dark Mode") {
+#Preview(
+    "Dark Mode",
+    traits: .navigationTrait(selected: .convenience)
+) {
     ConvenienceTrait()
         .preferredColorScheme(.dark)
 }
 
-#Preview("Dark Mode", traits: .modifier(DarkModeTrait())) {
+#Preview(
+    "Dark Mode",
+    traits: .modifier(DarkModeTrait()),
+    .navigationTrait(selected: .convenience)
+) {
     ConvenienceTrait()
 }
 
-#Preview("Dark Mode", traits: .darkMode) {
+#Preview(
+    "Dark Mode",
+    traits: .darkMode,
+    .navigationTrait(selected: .convenience)
+) {
     ConvenienceTrait()
 }
 
-#Preview("Light Mode") {
+#Preview(
+    "Light Mode",
+    traits: .navigationTrait(selected: .convenience)
+) {
     ConvenienceTrait()
         .preferredColorScheme(.light)
 }
 
-#Preview("Dark Mode + XXXLarge Type") {
+#Preview(
+    "Dark Mode + XXXLarge Type",
+    traits: .navigationTrait(selected: .convenience)
+) {
     ConvenienceTrait()
         .preferredColorScheme(.dark)
         .environment(\.dynamicTypeSize, .xxxLarge)
@@ -76,7 +99,8 @@ struct ConvenienceTrait: View {
 
 #Preview(
     "Dark Mode + accessibility4 Type",
-    traits: .darkMode, .dynamicTypeSize(.accessibility4)
+    traits: .darkMode, .dynamicTypeSize(.accessibility4),
+    .navigationTrait(selected: .convenience)
 ) {
     ConvenienceTrait()
 }
