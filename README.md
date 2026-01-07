@@ -124,21 +124,6 @@ The project demonstrates how to create and use custom preview traits for consist
 - Each view demonstrates different preview trait configurations
 - Check the preview code to learn how to implement traits in your own projects
 
-## 🙏 Support
-
-If you want to support my work, you can:
-
-<a href='https://ko-fi.com/Z8Z22WRVG' target='_blank'><img height='36' style='border:0px;height:36px;' src='Images/kofi3.png' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-
-## 📱 Connect
-
-- [Mastodon](https://iosdev.space/@StewartLynch)
-- [Threads](https://www.threads.net/@stewartlynch)
-- [Bluesky](https://bsky.app/profile/stewartlynch.bsky.social)
-- [X (Twitter)](https://x.com/StewartLynch)
-- [LinkedIn](https://linkedin.com/in/StewartLynch)
-- [YouTube](https://youTube.com/@StewartLynch)
-
 ## 📄 License
 
 Copyright © 2026 CreaTECH Solutions (Stewart Lynch). All rights reserved.
