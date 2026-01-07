@@ -19,6 +19,16 @@ This project demonstrates six essential categories of PreviewTraits:
 5. **Mock Network Traits** - Test network-dependent views with mock data
 6. **Mock SwiftData Traits** - Preview SwiftData-powered views with sample data
 
+## ✨ Features
+
+- **Modern SwiftUI Patterns**: Uses `@Observable` macro instead of ObservableObject
+- **SwiftData Integration**: Full CRUD operations with persistent storage
+- **Image Support**: TodoItems can include photos using PhotosPicker
+- **Rich Text Content**: Optional descriptions for detailed todo entries
+- **Component Architecture**: Properly separated views (TodoRow, AddTodoSheet) for maintainability
+- **Custom Preview Traits**: Reusable preview configurations for consistent testing
+- **No Dependencies**: Pure SwiftUI/SwiftData project without external packages
+
 ## 🚀 Getting Started
 
 ### Requirements
@@ -77,9 +87,35 @@ WindowGroup {
 .modelContainer(for: TodoItem.self)
 ```
 
+### SwiftData Integration
+
+The TodoItem demo showcases rich SwiftData features:
+
+- **Text and Images**: Stores todo titles, descriptions, and images
+- **Optional Properties**: Demonstrates nullable fields in SwiftData models
+- **PhotosPicker**: Modern image selection with async data loading
+- **Component Architecture**: TodoRow and AddTodoSheet components prevent compiler timeouts
+
+```swift
+@Model
+class TodoItem {
+    var title: String
+    var todoDescription: String?   // Optional description
+    var imageData: Data?            // Image storage
+    var isCompleted: Bool
+    var createdAt: Date
+}
+```
+
 ### Custom Preview Traits
 
-The project demonstrates how to create and use custom preview traits for consistent testing across your SwiftUI views.
+The project demonstrates how to create and use custom preview traits for consistent testing across your SwiftUI views. Custom traits include:
+
+- `.navigationTrait(selected:)` - Set initial navigation state
+- `.mockNetworkService` - Inject mock network data
+- `.mockData` - Populate SwiftData with sample todos
+- `.darkMode` - Quick dark mode testing
+- `.dynamicTypeSize(_:)` - Test accessibility text sizes
 
 ## 💡 Tips
 
